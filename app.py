@@ -4,7 +4,8 @@ from flask_script import Manager
 from project.server import create_app
 from project.server import database
 
-manager = Manager(create_app(os.getenv('FLASK_CONFIGURATION')))
+app = create_app(os.getenv('FLASK_CONFIGURATION'))
+manager = Manager(app)
 
 
 @manager.command
@@ -14,10 +15,10 @@ def test():
     :return:
     """
     tests = unittest.TestLoader().discover('project/tests', pattern='test*.py')
-    # result = unittest.TextTestRunner(verbosity=2).run(tests)
-    # if result.wasSuccessful():
-    #     return True
-    # return False
+    result = unittest.TextTestRunner().run(tests)
+    if result.wasSuccessful():
+        return True
+    return False
 
 
 @manager.command

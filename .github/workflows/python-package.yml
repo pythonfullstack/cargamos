@@ -31,4 +31,7 @@ jobs:
     - name: Test with unittest
       run: |
         export FLASK_CONFIGURATION=testing
+        flask db init
+        flask db migrate
+        flask db upgrade
         python app.py test

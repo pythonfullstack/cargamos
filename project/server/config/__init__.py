@@ -19,7 +19,7 @@ class ProductionConfig(BasicConfig):
 
 class TestingConfig(BasicConfig):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
 
 
 app_config = {
