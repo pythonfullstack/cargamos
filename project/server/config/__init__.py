@@ -1,7 +1,5 @@
 import os
 
-basedir = os.getcwd()
-
 
 class BasicConfig:
     SECRET_KEY = 'p9Bv<3Eid9%$i01'
@@ -11,7 +9,7 @@ class BasicConfig:
 class DevelopmentConfig(BasicConfig):
     DEBUG = True
     ENV = 'development'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(os.getcwd(), 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
