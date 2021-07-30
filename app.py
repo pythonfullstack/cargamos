@@ -16,6 +16,7 @@ def test():
     tests = unittest.TestLoader().discover('project/tests', pattern='test*.py')
 
 
+
 @manager.command
 def create_db():
     """Creates the db tables."""
