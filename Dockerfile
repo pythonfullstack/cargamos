@@ -1,7 +1,7 @@
 FROM python:3.7
 
 RUN mkdir -p /home/ubuntu/cargamos/
-RUN apt-get install libapache2-mod-wsgi-py3 -y
+RUN apt-get install libapache2-mod-wsgi-py3
 
 WORKDIR /home/ubuntu/cargamos/
 
