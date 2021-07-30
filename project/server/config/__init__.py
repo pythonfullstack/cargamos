@@ -18,7 +18,7 @@ class DevelopmentConfig(BasicConfig):
 class ProductionConfig(BasicConfig):
     DEBUG = False
     ENV = 'production'
-    SQLALCHEMY_DATABASE_URI = 'mysql://dt_admin:dt2016@localhost/dreamteam_db'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://cargamos:cargamos_password@db/cargamos'
 
 
 class TestingConfig(BasicConfig):
