@@ -4,13 +4,13 @@ import os
 class BasicConfig:
     SECRET_KEY = 'p9Bv<3Eid9%$i01'
     TESTING = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class DevelopmentConfig(BasicConfig):
     DEBUG = True
     ENV = 'development'
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///app.db'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class ProductionConfig(BasicConfig):
