@@ -10,26 +10,29 @@ from flask_testing import TestCase
 from project.server import create_app
 
 
-class TestDevelopmentConfig(TestCase, ABC):
+class TestDevelopmentConfig(TestCase):
+    def create_app(self):
+        return create_app('development')
 
     def test_app_is_development(self):
-        app = create_app('development')
-        self.assertTrue(app.config['DEBUG'] is True)
+        self.assertTrue(self.app.config['DEBUG'] is True)
         self.assertFalse(current_app is None)
 
 
-class TestTestingConfig(TestCase, ABC):
+class TestTestingConfig(TestCase):
+    def create_app(self):
+        return create_app('testing')
 
     def test_app_is_testing(self):
-        app = create_app('testing')
-        self.assertTrue(app.config['DEBUG'])
+        self.assertTrue(self.app.config['DEBUG'])
 
 
-class TestProductionConfig(TestCase, ABC):
+class TestProductionConfig(TestCase):
+    def create_app(self):
+        return create_app('production')
 
     def test_app_is_production(self):
-        app = create_app('production')
-        self.assertTrue(app.config['DEBUG'] is False)
+        self.assertTrue(self.app.config['DEBUG'] is False)
 
 
 if __name__ == '__main__':

@@ -9,19 +9,17 @@ class BasicConfig:
 
 class DevelopmentConfig(BasicConfig):
     DEBUG = True
-    ENV = 'development'
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///app.db'
 
 
 class ProductionConfig(BasicConfig):
     DEBUG = False
-    ENV = 'production'
     SQLALCHEMY_DATABASE_URI = 'postgresql://cargamos:cargamos_password@db:5432/cargamos'
 
 
 class TestingConfig(BasicConfig):
     TESTING = True
-    DATABASE_URI = 'sqlite:///:memory:'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
 
 
 app_config = {
