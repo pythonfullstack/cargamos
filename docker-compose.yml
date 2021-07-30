@@ -28,7 +28,7 @@ services:
     volumes:
       - static_volume:/home/ubuntu/cargamos/static
       - media_volume:/home/ubuntu/cargamos/media
-    port:
+    ports:
       - 8000:8000
     depends_on:
       - db
