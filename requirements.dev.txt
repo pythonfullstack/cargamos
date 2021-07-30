@@ -1,0 +1,6 @@
+flask==2.0.1
+flask-restx==0.5.0
+flask-sqlalchemy==2.5.1
+flask-migrate==3.0.1
+flask-testing==0.8.1
+requests
