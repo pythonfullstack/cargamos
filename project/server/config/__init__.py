@@ -16,7 +16,7 @@ class DevelopmentConfig(BasicConfig):
 class ProductionConfig(BasicConfig):
     DEBUG = False
     ENV = 'production'
-    SQLALCHEMY_DATABASE_URI = 'postgresql://cargamos:cargamos_password@db/cargamos'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://cargamos:cargamos_password@db:5432/cargamos'
 
 
 class TestingConfig(BasicConfig):

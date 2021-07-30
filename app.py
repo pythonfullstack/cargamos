@@ -1,9 +1,8 @@
-import unittest
 import os
+import unittest
 
 from project.server import create_app
 from project.server import database
-
 
 app = create_app(os.getenv('FLASK_CONFIGURATION'))
 
