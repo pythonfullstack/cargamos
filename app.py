@@ -1,14 +1,13 @@
 import unittest
-from flask_script import Manager
+import os
 
 from project.server import create_app
 from project.server import database
 
-app = create_app('development')
-manager = Manager(app)
+
+app = create_app(os.getenv('FLASK_CONFIGURATION'))
 
 
-@manager.command
 def test():
     """
     Runs the unit tests without test coverage.
@@ -21,11 +20,10 @@ def test():
     return False
 
 
-@manager.command
 def create_db():
     """Creates the db tables."""
     database.db.create_all()
 
 
 if __name__ == "__main__":
-    manager.run()
+    app.run()

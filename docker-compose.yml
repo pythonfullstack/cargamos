@@ -24,7 +24,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: bash -c "export FLASK_CONFIGURATION=production && flask db init && flask db migrate && flask db upgrade && gunicorn -w 1 -b 0.0.0.0:8000 wsgi:server"
+    command: bash -c "export FLASK_CONFIGURATION=development && flask db init && flask db migrate && flask db upgrade && gunicorn -w 1 -b 0.0.0.0:8000 wsgi:server"
     volumes:
       - static_volume:/home/ubuntu/cargamos/static
       - media_volume:/home/ubuntu/cargamos/media
