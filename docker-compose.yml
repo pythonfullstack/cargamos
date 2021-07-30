@@ -1,0 +1,53 @@
+version: '3.3'
+
+services:
+  db:
+    restart: always
+    image: postgres:9.6.5
+    container_name: cargamos_postgres #you can change this
+    environment:
+      - POSTGRES_USER=cargamos
+      - POSTGRES_PASS=cargamos_password
+      - POSTGRES_DB=cargamos
+      - POSTGRES_PORT=5432
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  redis:
+    image: "redis:alpine"
+
+  web:
+    container_name: flask_app
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "export FLASK_CONFIGURATION=production && flask db init && flask db migrate && flask db upgrade && gunicorn -w 1 -b 0.0.0.0:8000 wsgi:server"
+    volumes:
+      - static_volume:/home/ubuntu/cargamos/static
+      - media_volume:/home/ubuntu/cargamos/media
+    port:
+      - 8000:8000
+    depends_on:
+      - db
+      - redis
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/home/ubuntu/cargamos/static
+      - media_volume:/home/ubuntu/cargamos/media
+    ports:
+      - 80:80
+    #      - 443:443
+    expose:
+      - 80
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
