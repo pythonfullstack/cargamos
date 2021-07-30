@@ -14,7 +14,10 @@ def test():
     :return:
     """
     tests = unittest.TestLoader().discover('project/tests', pattern='test*.py')
-
+    # result = unittest.TextTestRunner(verbosity=2).run(tests)
+    # if result.wasSuccessful():
+    #     return True
+    # return False
 
 
 @manager.command
