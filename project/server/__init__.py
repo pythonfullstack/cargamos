@@ -11,8 +11,6 @@ migrate = Migrate()
 def create_app(environment):
     app = Flask(__name__)
     app.config.from_object(config.app_config[environment])
-    print(environment, config.app_config[environment]
-          )
     app.config.update(
         CELERY_BROKER_URL='redis://localhost:6379',
         CELERY_RESULT_BACKEND='redis://localhost:6379'
