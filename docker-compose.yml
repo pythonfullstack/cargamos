@@ -24,7 +24,7 @@ services:
     build:
       context: ""
       dockerfile: compose/Dockerfile
-    command: /start
+    command: bash -c "export FLASK_CONFIGURATION=production && gunicorn -w 1 -b 0.0.0.0:8000 app:manager"
     env_file:
       - .env/.dev
     volumes:
@@ -32,8 +32,6 @@ services:
       - media_volume:/home/ubuntu/cargamos/media
     ports:
       - 8000:8000
-    environment:
-      - FLASK_CONFIGURATION=production
     depends_on:
       - db
       - redis
