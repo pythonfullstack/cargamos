@@ -7,7 +7,6 @@ from updated_packages.flask_script import Manager
 
 app = create_app(os.getenv('FLASK_CONFIGURATION'))
 
-
 manager = Manager(app)
 
 

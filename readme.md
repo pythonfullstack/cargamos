@@ -29,7 +29,7 @@
 >4. Load-balancing with K8s
 
 
-### Tips:
+## Tips:
 **Tech-stacks used:**
 > 1. Flask, Asynchronous tasks with Celery, threading
 > 2. PostgreSQL, Redis   
@@ -46,3 +46,5 @@ You should run the following commands to migrate Database on another terminal af
     flask db init
     flask db migrate
     flask db upgrade
+
+#### **Note:** Please make sure you copied env file.
