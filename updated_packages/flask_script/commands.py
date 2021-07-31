@@ -4,15 +4,12 @@ from __future__ import absolute_import,print_function
 import os
 import sys
 import code
-import warnings
-import string
 import inspect
 
 import argparse
 
 from flask import _request_ctx_stack
 
-from .cli import prompt, prompt_pass, prompt_bool, prompt_choices
 from ._compat import izip, text_type
 
 
@@ -182,7 +179,7 @@ class Command(object):
             parent = getattr(parent,'parent',None)
 
         if help_args:
-            from flask_script import add_help
+            from updated_packages.flask_script import add_help
             add_help(parser,help_args)
 
         for option in self.get_options():
@@ -482,7 +479,7 @@ class Server(Command):
 class Clean(Command):
     "Remove *.pyc and *.pyo files recursively starting at current directory"
     def run(self):
-        for dirpath, dirnames, filenames in os.walk('.'):
+        for dirpath, dirnames, filenames in os.walk(''):
             for filename in filenames:
                 if filename.endswith('.pyc') or filename.endswith('.pyo'):
                     full_pathname = os.path.join(dirpath, filename)

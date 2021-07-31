@@ -22,20 +22,24 @@ services:
     container_name: flask_app
     restart: always
     build:
-      context: .
-      dockerfile: Dockerfile
-    command: bash -c "export FLASK_CONFIGURATION=production && gunicorn -w 1 -b 0.0.0.0:8000 app:manager"
+      context: ""
+      dockerfile: compose/Dockerfile
+    command: /start
     volumes:
       - static_volume:/home/ubuntu/cargamos/static
       - media_volume:/home/ubuntu/cargamos/media
     ports:
       - 8000:8000
+    environment:
+      - FLASK_CONFIGURATION=production
     depends_on:
       - db
       - redis
 
   nginx:
-    build: ./nginx
+    build:
+      context: ""
+      dockerfile: compose/nginx/Dockerfile
     volumes:
       - static_volume:/home/ubuntu/cargamos/static
       - media_volume:/home/ubuntu/cargamos/media
@@ -46,6 +50,38 @@ services:
       - 80
     depends_on:
       - web
+
+  celery_worker:
+    build:
+      context: ""
+      dockerfile: compose/Dockerfile
+    image: flask_celery_example_celery_worker
+    command: /worker_start
+    depends_on:
+      - redis
+      - db
+
+  celery_beat:
+    build:
+      context: ""
+      dockerfile: compose/Dockerfile
+    image: flask_celery_example_celery_beat
+    command: /beat_start
+    depends_on:
+      - redis
+      - db
+
+  flower:
+    build:
+      context: ""
+      dockerfile: compose/Dockerfile
+    image: flask_celery_example_celey_flower
+    command: /flower_start
+    ports:
+      - 5557:5555
+    depends_on:
+      - redis
+      - db
 
 volumes:
   postgres_data:

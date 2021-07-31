@@ -1,10 +1,9 @@
-import os
 import unittest
-from flask_script import Manager
-from project.server import create_app
-from project.server import database
 
-app = create_app(os.getenv('FLASK_CONFIGURATION'))
+from project.server import database
+from project.server.tasks import *
+from updated_packages.flask_script import Manager
+
 manager = Manager(app)
 
 
