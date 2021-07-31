@@ -5,6 +5,7 @@ flask-migrate==3.0.1
 flask-testing==0.8.1
 celery==5.1.2
 redis==3.5.3
+flower==1.0.0
 requests
 gunicorn
 psycopg2
