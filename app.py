@@ -17,8 +17,8 @@ def test():
     tests = unittest.TestLoader().discover('project/tests', pattern='test*.py')
     result = unittest.TextTestRunner().run(tests)
     if result.wasSuccessful():
-        return True
-    return False
+        return 0
+    return 1
 
 
 @manager.command
