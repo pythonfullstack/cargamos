@@ -19,7 +19,7 @@ RUN mkdir -p /home/ubuntu/cargamos/
 
 WORKDIR /home/ubuntu/cargamos/
 
-ADD .. /home/ubuntu/cargamos/
+ADD . /home/ubuntu/cargamos/
 
 ENV HOME=/home/ubuntu
 ENV APP_HOME=$HOME/cargamos
@@ -50,7 +50,5 @@ RUN chmod +x /beat_start
 COPY ./compose/celery/flower_start /flower_start
 RUN sed -i 's/\r$//g' /flower_start
 RUN chmod +x /flower_start
-
-WORKDIR /app
 
 ENTRYPOINT ["/entrypoint"]
