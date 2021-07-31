@@ -87,8 +87,8 @@ services:
       - .env/.dev
     environment:
       - FLASK_CONFIGURATION=production
-    ports:
-      - 5557:5555
+#    ports:
+#      - 5557:5555
     expose:
       - 5555
     depends_on:
