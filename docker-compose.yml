@@ -59,6 +59,8 @@ services:
     command: /worker_start
     env_file:
       - .env/.dev
+    environment:
+      - FLASK_CONFIGURATION=production
     depends_on:
       - redis
       - db
@@ -71,6 +73,8 @@ services:
     command: /beat_start
     env_file:
       - .env/.dev
+    environment:
+      - FLASK_CONFIGURATION=production
     depends_on:
       - redis
       - db
@@ -83,6 +87,8 @@ services:
     command: /flower_start
     env_file:
       - .env/.dev
+    environment:
+      - FLASK_CONFIGURATION=production
     ports:
       - 5557:5555
     depends_on:
