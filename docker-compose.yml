@@ -89,6 +89,8 @@ services:
       - FLASK_CONFIGURATION=production
     ports:
       - 5557:5555
+    expose:
+      - 5555
     depends_on:
       - redis
       - db
