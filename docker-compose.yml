@@ -24,9 +24,11 @@ services:
     build:
       context: ""
       dockerfile: compose/Dockerfile
-    command: bash -c "export FLASK_CONFIGURATION=production && gunicorn -w 1 -b 0.0.0.0:8000 app:app"
+    command: /start
     env_file:
       - .env/.dev
+    environment:
+      - FLASK_CONFIGURATION=production
     volumes:
       - static_volume:/home/ubuntu/cargamos/static
       - media_volume:/home/ubuntu/cargamos/media

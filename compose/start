@@ -4,4 +4,4 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-gunicorn -w 1 -b 0.0.0.0:8000 app:manager
+gunicorn -w 1 -b 0.0.0.0:8000 app:app
