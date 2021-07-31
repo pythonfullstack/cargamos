@@ -37,9 +37,7 @@ services:
       - redis
 
   nginx:
-    build:
-      context: ""
-      dockerfile: compose/nginx/Dockerfile
+    build: compose/nginx
     volumes:
       - static_volume:/home/ubuntu/cargamos/static
       - media_volume:/home/ubuntu/cargamos/media
