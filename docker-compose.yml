@@ -24,7 +24,7 @@ services:
     build:
       context: ""
       dockerfile: compose/Dockerfile
-    command: bash -c "export FLASK_CONFIGURATION=production && gunicorn -w 1 -b 0.0.0.0:8000 app:manager"
+    command: bash -c "export FLASK_CONFIGURATION=production && gunicorn -w 1 -b 0.0.0.0:8000 app:app"
     env_file:
       - .env/.dev
     volumes:
@@ -87,8 +87,8 @@ services:
       - .env/.dev
     environment:
       - FLASK_CONFIGURATION=production
-#    ports:
-#      - 5557:5555
+    ports:
+      - 5557:5555
     expose:
       - 5555
     depends_on:
