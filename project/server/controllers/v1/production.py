@@ -1,5 +1,7 @@
 from flask_restx import Namespace, Resource, fields
+
 from project.server.models import Production
+from project.server.tasks import task_with_celery, threads
 
 api = Namespace('productions', 'Production Operations')
 
@@ -25,6 +27,10 @@ class ProductionList(Resource):
     def post(self):
         """Create a new production"""
         result = Production.create(api.payload)
+        # Asynchronous long task that we don't have to know the output
+        task_with_celery.delay()
+        threads.async_task_with_threading()
+
         return result, 201
 
 

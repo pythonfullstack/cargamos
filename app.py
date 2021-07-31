@@ -1,8 +1,12 @@
+import os
 import unittest
 
-from project.server import database
-from project.server.tasks import *
+from project.server import create_app
+from project.server.tasks import celery_app as celery
 from updated_packages.flask_script import Manager
+
+app = create_app(os.getenv('FLASK_CONFIGURATION'))
+
 
 manager = Manager(app)
 
@@ -18,12 +22,6 @@ def test():
     if result.wasSuccessful():
         return 0
     return 1
-
-
-@manager.command
-def create_db():
-    """Creates the db tables."""
-    database.db.create_all()
 
 
 if __name__ == "__main__":

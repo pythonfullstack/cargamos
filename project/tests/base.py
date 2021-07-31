@@ -1,9 +1,7 @@
-from abc import ABC
-
 from flask_testing import TestCase
+
 from project.server import create_app
 from project.server.database import db
-from project.server.models import Store
 
 
 class BaseTestCase(TestCase):

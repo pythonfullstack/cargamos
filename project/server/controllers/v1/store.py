@@ -1,5 +1,7 @@
 from flask_restx import Namespace, Resource, fields
+
 from project.server.models import Store
+from project.server.tasks import task_with_celery, threads
 
 api = Namespace('stores', 'Store Operations')
 
@@ -26,6 +28,10 @@ class StoreList(Resource):
     def post(self):
         """Create a new Store"""
         result = Store.create(api.payload)
+        # Asynchronous long task that we don't have to know the output
+        task_with_celery.delay()
+        threads.async_task_with_threading()
+
         return result, 201
 
 

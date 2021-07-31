@@ -1,5 +1,7 @@
 from flask_restx import Namespace, Resource, fields
+
 from project.server.models import Inventory
+from project.server.tasks import task_with_celery, threads
 
 api = Namespace('inventories', 'Inventory Operations')
 
@@ -30,6 +32,11 @@ class InventoryList(Resource):
     def post(self):
         """Create a new inventory"""
         success, data = Inventory.create(api.payload)
+
+        # Asynchronous long task that we don't have to know the output
+        task_with_celery.delay()
+        threads.async_task_with_threading()
+
         if success:
             return data, 201
         else:
