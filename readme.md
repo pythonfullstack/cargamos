@@ -8,13 +8,13 @@
     sudo apt install docker-compose -y
 ##### 2. Build Docker-compose and run
 
-    You can just run the following bash file
+You can just run the following bash file
 
-        ./run_docker.sh
+    ./run_docker.sh
 
-    *_Note_:* If you encountered permission problem, you can run the following command before the above command
+**_Note_:** If you encountered permission problem, you can run the following command before the above command
    
-        chmod +x run_docker.sh
+    chmod +x run_docker.sh
 
 ## How to check the result
 > **Swagger Document URL**: [server URL]/api/v1
